@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Surplus</string>
+    <string name="setting">Setting</string>
+    <string name="click_again_to_exit">Click Back Key To Exit</string>
+    <string name="memo">Memo</string>
+    <string name="money">Money</string>
+    <string name="add_record">Add Record</string>
+    <string name="note">Note</string>
+    <string name="you_have_no_any_records">You don\'t have any record yet.</string>
+    <string name="please_input_money">Can not be null</string>
+    <string name="save_success">Save Success</string>
+    <string name="save_failed">Save Failed</string>
+
+    <string name="yearly">Yearly</string>
+    <string name="monthly">Monthly</string>
+    <string name="weekly">Weekly</string>
+    <string name="daily">Daily</string>
+
+    <string name="diet">Diet</string>
+    <string name="traffic">Traffic</string>
+    <string name="shopping">Shopping</string>
+    <string name="other">Others</string>
+</resources>

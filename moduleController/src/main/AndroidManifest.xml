@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.aoki.surplus.controller">
+
+    <!-- Net access permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <activity
+            android:name=".home.HomeActivity"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".setting.SettingActivity"
+            android:screenOrientation="behind" />
+    </application>
+</manifest>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">有余记账</string>
+    <string name="setting">设置</string>
+    <string name="click_again_to_exit">再点一次退出</string>
+    <string name="memo">备注</string>
+    <string name="money">金额</string>
+    <string name="add_record">记上一笔</string>
+    <string name="note">记录</string>
+    <string name="please_input_money">请输入金额</string>
+    <string name="save_success">保存成功</string>
+    <string name="save_failed">保存失败</string>
+    <string name="you_have_no_any_records">您暂时没有任何消费记录</string>
+    <!-- Tab item names -->
+    <string name="yearly">年</string>
+    <string name="monthly">月</string>
+    <string name="weekly">周</string>
+    <string name="daily">日</string>
+    <!-- Cost Type -->
+    <string name="diet">饮食</string>
+    <string name="traffic">交通</string>
+    <string name="shopping">购物</string>
+    <string name="other">杂项</string>
+</resources>

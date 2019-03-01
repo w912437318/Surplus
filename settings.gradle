@@ -1,0 +1,1 @@
+include ':app', ':moduleController', ':moduleCommon', ':moduleResource'

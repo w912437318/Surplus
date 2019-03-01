@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "info.aoki.surplus"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Alibaba ARouter compile options
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // Java Compiler Version 1.8
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /*
+     * Custom dependencies
+     */
+
+    // Support -- design, v4, recycler view
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    /*
+     * OkHttp + Retrofit2 + RxJava2
+     */
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    // Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    // RxJava + RxJava android support
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'io.reactivex:rxjava:1.2.1'
+
+    // MPAndroidChart3.0
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    // Status bar util
+    implementation 'com.jaeger.statusbaruitl:library:1.5.0'
+
+    // Json
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    /*
+     * GreenDao
+     */
+    implementation 'org.greenrobot:greendao:3.2.2'
+    // GreenDao encryption dependency
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.2'
+
+    // Android App Update
+    implementation 'com.azhon:appupdate:2.0.0'
+
+    // ARouter - alibaba
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    // Import project modules
+    implementation project(':moduleController')
+    implementation project(':moduleResource')
+}

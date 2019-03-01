@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'info.aoki.surplus.system.model'
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /*
+     * OkHttp + Retrofit2 + RxJava2
+     */
+    // OkHttp
+    compileOnly 'com.squareup.okhttp3:okhttp:3.12.0'
+    // Retrofit2
+    compileOnly 'com.squareup.retrofit2:retrofit:2.1.0'
+    compileOnly 'com.squareup.retrofit2:converter-gson:2.1.0'
+    // RxJava + RxJava android support
+    compileOnly 'io.reactivex:rxandroid:1.2.1'
+    compileOnly 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compileOnly 'io.reactivex:rxjava:1.2.1'
+
+    /*
+     * GreenDao
+     */
+    compileOnly 'org.greenrobot:greendao:3.2.2'
+    // GreenDao encryption dependency
+    compileOnly 'net.zetetic:android-database-sqlcipher:3.5.2'
+
+    implementation project(':moduleResource')
+}

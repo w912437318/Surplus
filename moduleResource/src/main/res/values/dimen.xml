@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text size -->
+    <dimen name="content_text_size">14sp</dimen>
+    <dimen name="content_sub_title_size">16sp</dimen>
+    <dimen name="content_big_title_size">24sp</dimen>
+    <dimen name="action_bar_title_size">20sp</dimen>
+
+    <!-- Widget size -->
+    <dimen name="icon_button_height">48dp</dimen>
+    <dimen name="icon_button_width">48dp</dimen>
+    <dimen name="image_user_icon_height">64dp</dimen>
+    <dimen name="image_user_icon_width">64dp</dimen>
+    <dimen name="min_clickable_widget_height">48dp</dimen>
+    <dimen name="min_clickable_widget_width">48dp</dimen>
+    <dimen name="floating_button_height">56dp</dimen>
+    <dimen name="floating_button_width">56dp</dimen>
+    <dimen name="action_bar_height">56dp</dimen>
+
+    <!-- Content padding & margin -->
+    <dimen name="margin_widget_top">8dp</dimen>
+    <dimen name="margin_widget_bottom">8dp</dimen>
+    <dimen name="screen_padding_left">16dp</dimen>
+    <dimen name="screen_padding_right">16dp</dimen>
+    <dimen name="sliding_menu_padding_left">56dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+
+    <!--Default Widget Size-->
+    <dimen name="default_height">48dp</dimen>
+
+</resources>
