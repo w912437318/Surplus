@@ -9,12 +9,6 @@ public abstract class SimpleObserver<T> implements Observer<T> {
 
     }
 
-    /**
-     * Default error method
-     * <hr/>
-     * Print error message to stack trace
-     * @param e Error message
-     */
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();

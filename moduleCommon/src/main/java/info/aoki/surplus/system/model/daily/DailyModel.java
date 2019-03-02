@@ -37,16 +37,13 @@ public class DailyModel extends BaseModel implements IDailyModel {
                 map(aLong -> {
                     float todayConsumed = 0f;
                     try {
-                        // Query the consumed after 12:00 AM
                         List<RecordBean> recordBeanList = recordBeanDao.
                                 queryBuilder().
                                 where(RecordBeanDao.Properties.R_time.ge(mTodayStartTime)).
                                 list();
-                        // Calc today consumed
                         for (RecordBean recordBean : recordBeanList) {
                             todayConsumed += recordBean.getR_money();
                         }
-                        // Query success, return result
                         return todayConsumed;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -64,7 +61,6 @@ public class DailyModel extends BaseModel implements IDailyModel {
                 observeOn(Schedulers.io()).
                 map(aLong -> {
                     try {
-                        // Query success
                         return recordBeanDao.
                                 queryBuilder().
                                 where(RecordBeanDao.Properties.R_time.ge(mTodayStartTime)).
@@ -72,7 +68,6 @@ public class DailyModel extends BaseModel implements IDailyModel {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    // Query failed, throw exception.
                     throw new RuntimeException("Query failed");
                 }).
                 observeOn(AndroidSchedulers.mainThread()).
@@ -87,7 +82,6 @@ public class DailyModel extends BaseModel implements IDailyModel {
                 observeOn(Schedulers.io()).
                 map(aLong -> {
                     try {
-                        // Query success.
                         return recordBeanDao.
                                 queryBuilder().
                                 where(RecordBeanDao.Properties.R_time.ge(timeLimit)).
@@ -95,24 +89,18 @@ public class DailyModel extends BaseModel implements IDailyModel {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    // Query failed, throw exception.'
                     throw new RuntimeException("Query failed");
                 }).observeOn(AndroidSchedulers.mainThread()).
                 subscribe(callback);
     }
 
-    /**
-     * Get toady 0:00:00 millis
-     *
-     * @return TimeMillis
-     */
     private long getTodayStartTime() {
         long currentTime = System.currentTimeMillis();
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(currentTime); // Set calendar.
-        calendar.set(Calendar.HOUR_OF_DAY, 0); // Set hour 0
-        calendar.set(Calendar.MINUTE, 0); // Set minute 0
-        calendar.set(Calendar.SECOND, 0); // Ser second 0
+        calendar.setTimeInMillis(currentTime);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
         return calendar.getTimeInMillis();
     }
 }

@@ -1,15 +1,12 @@
 package info.aoki.surplus.system.pojo;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 
 import java.util.Date;
-import org.greenrobot.greendao.annotation.Generated;
-
-import info.aoki.surplus.system.ApplicationConfig;
-import info.aoki.surplus.system.model.DaoMaster;
 
 /**
  * <h3>Record Bean</h3>
@@ -26,21 +23,21 @@ public class RecordBean {
 
     @Property(nameInDb = "r_money")
     @NotNull
-    private float r_money; // Money, Not null
+    private float r_money;
 
     @Property(nameInDb = "r_memo")
-    private String r_memo; // Memo
+    private String r_memo;
 
     @Property(nameInDb = "r_time")
     @NotNull
-    private long r_time; // Record create time
+    private long r_time;
 
     @Property(nameInDb = "r_type")
     @NotNull
-    private String r_type; // Type
+    private String r_type;
 
     @Property(nameInDb = "r_back_flag")
-    private boolean isBackup; // Back up flag, false means its not upload to server yet.
+    private boolean isBackup;
 
     public RecordBean(float r_money, String r_type) {
         this.r_money = r_money;

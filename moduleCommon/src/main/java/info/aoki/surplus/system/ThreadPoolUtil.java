@@ -16,12 +16,6 @@ public class ThreadPoolUtil {
     private ThreadPoolExecutor mThreadPoolExecutor;
 
     private ThreadPoolUtil() {
-        /*
-         Create Thread Pool
-         Max thread size 10
-         Core thread 5
-         Keep alive time 3 minutes
-          */
         mThreadPoolExecutor = new ThreadPoolExecutor(
                 5,
                 10,
@@ -30,11 +24,6 @@ public class ThreadPoolUtil {
                 new LinkedBlockingDeque<>());
     }
 
-    /**
-     * Execute runnable
-     *
-     * @param command {@link Runnable}
-     */
     public void execute(Runnable command) {
         mThreadPoolExecutor.execute(command);
     }
@@ -43,9 +32,6 @@ public class ThreadPoolUtil {
         return this.mThreadPoolExecutor;
     }
 
-    /**
-     * Create Thread Pool
-     */
     public static void createThreadPoolUtil() {
         if (sThreadPoolUtil == null) {
             synchronized (ThreadPoolUtil.class) {

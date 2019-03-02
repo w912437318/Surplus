@@ -13,11 +13,6 @@ import android.widget.Toast;
 public class ToastUtil {
     private static Toast sToast;
 
-    /**
-     * <p>Show toast to user</p>
-     *
-     * @param message String
-     */
     @SuppressLint("ShowToast")
     public static void showToast(String message) {
         if (sToast == null) {
@@ -27,11 +22,6 @@ public class ToastUtil {
         sToast.show();
     }
 
-    /**
-     * <p>Show toast to user</p>
-     *
-     * @param resId String ID
-     */
     @SuppressLint("ShowToast")
     public static void showToast(int resId) {
         if (sToast == null) {

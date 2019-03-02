@@ -39,7 +39,6 @@ public class HomeModel extends BaseModel implements IHomeModel {
                 subscribeOn(Schedulers.io()).
                 observeOn(Schedulers.io()).
                 map(recordBean1 -> {
-                    // Insert data to database
                     try {
                         mRecordBeanDao.insert(recordBean1);
                         return true;
@@ -55,7 +54,6 @@ public class HomeModel extends BaseModel implements IHomeModel {
 
     @Override
     public void getCurrentMonthConsumed(Observer<Float> callBack) {
-        // Get day 1 in month
         long firstDayOfMonth = getFirstDayInMonth();
         RecordBeanDao recordBeanDao = mDaoSession.getRecordBeanDao();
         Observable.just(firstDayOfMonth).
@@ -87,7 +85,6 @@ public class HomeModel extends BaseModel implements IHomeModel {
         Date date = new Date();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
         Calendar calendar = Calendar.getInstance();
-        // Set calender
         calendar.set(Integer.parseInt(simpleDateFormat.format(date)), date.getMonth(), 1, 0, 0, 0);
         return calendar.getTime().getTime();
     }

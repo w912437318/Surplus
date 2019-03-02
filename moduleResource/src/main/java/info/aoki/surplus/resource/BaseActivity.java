@@ -13,50 +13,47 @@ public abstract class BaseActivity<T extends BasePresenter>
         extends AppCompatActivity
         implements BaseView {
 
-    /**
-     * Presenter
-     * <hr/>
-     * <p>Service,  all logic method in this object</p>
-     */
     protected T mPresenter;
 
-    // Can't not modify this method
     @Override
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Inflate activity content view
         setContentView(getLayoutId());
-
-        // Start init activity data
-
-        // init presenter
         this.mPresenter = initPresenter();
-        // init data
+
         initData();
-        // find widget
         bindWidget();
-        // create adapter or set listener
         initView();
+        fetchData();
     }
 
-    /**
-     * Get activity layout id
-     *
-     * @return Layout id
-     */
     protected abstract int getLayoutId();
 
     /**
-     * Create presenter
-     * <p>It's run before {@link BaseActivity#initData()}, So you count do anything in constructor</p>
+     * 初始化 Presenter
      *
      * @return Presenter
      */
     protected abstract T initPresenter();
 
+    /**
+     * 初始化数据
+     */
     protected abstract void initData();
 
+    /**
+     * 绑定控件
+     */
     protected abstract void bindWidget();
 
+    /**
+     * 初始化 View
+     */
     protected abstract void initView();
+
+    /**
+     * 获取数据
+     * <p>在此处获取异步数据</p>
+     */
+    protected abstract void fetchData();
 }

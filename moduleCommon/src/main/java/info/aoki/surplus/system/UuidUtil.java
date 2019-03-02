@@ -10,13 +10,6 @@ import java.util.UUID;
  * @version 1.0
  */
 public class UuidUtil {
-    /**
-     * Get random UUID
-     * <p>
-     *     Get random uuid, without "-", and it's uppercase
-     * </p>
-     * @return String UUID
-     */
     public static String getRandomUUID() {
         UUID uuid = UUID.randomUUID();
         String uuidStr = uuid.toString();

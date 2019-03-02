@@ -22,15 +22,6 @@ import android.support.v4.content.ContextCompat;
 public class PermissionUtil {
     public final static int REQUEST_CODE_REQUEST_PERMISSION = 200;
 
-    /**
-     * <p>Check has permission or not</p>
-     * <strong>Note:</strong>
-     * <p>True: has permission</p>
-     * <p>False: no permission</p>
-     *
-     * @param permission Permission
-     * @return boolean
-     */
     public static boolean checkSelfPermission(String permission) {
         int hasPermission = ContextCompat.checkSelfPermission(
                 ApplicationConfig.getConfig().getContext(),
@@ -38,28 +29,10 @@ public class PermissionUtil {
         return hasPermission == PackageManager.PERMISSION_GRANTED;
     }
 
-    /**
-     * <p>Check permission state</p>
-     * <p>Call this method before {@link PermissionUtil#requestPermission(Activity, String)} method, Request permission when it return true.</p>
-     * <p>true: show dialog request permission</p>
-     * <p>false: user refuse permission already</p>
-     *
-     * @param activity   Current activity
-     * @param permission Permission
-     * @return boolean
-     */
     public static boolean shouldRequestPermission(Activity activity, String permission) {
         return !ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
-    /**
-     * <p>Request permission</p>
-     * <p>Request code: Field REQUEST_CODE_REQUEST_PERMISSION in this class</p>
-     * <p>Call {@link PermissionUtil#shouldRequestPermission(Activity, String)} before you request permission</p>
-     *
-     * @param activity   Current activity
-     * @param permission Permission
-     */
     public static void requestPermission(Activity activity, String permission) {
         ActivityCompat.requestPermissions(activity, new String[]{permission}, REQUEST_CODE_REQUEST_PERMISSION);
     }

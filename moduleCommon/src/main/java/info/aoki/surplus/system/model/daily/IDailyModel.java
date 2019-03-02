@@ -13,25 +13,10 @@ import rx.Observer;
  * @version 1.0
  */
 public interface IDailyModel {
-    /**
-     * Query consumed today
-     *
-     * @param callback RxJava observer
-     */
+
     public void queryTodayConsumed(Observer<Float> callback);
 
-    /**
-     * Query all consumed record in today.
-     *
-     * @param callback RxJava observer
-     */
     public void queryTodayAllConsumedRecord(Observer<List<RecordBean>> callback);
 
-    /**
-     * Query consumed record that after specified time
-     *
-     * @param timeLimit Specified time
-     * @param callback  RxJava observer
-     */
     public void queryConsumedRecordAfterTimeLimit(long timeLimit, Observer<List<RecordBean>> callback);
 }

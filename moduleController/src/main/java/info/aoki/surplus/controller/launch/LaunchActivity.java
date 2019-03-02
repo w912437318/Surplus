@@ -41,26 +41,25 @@ public class LaunchActivity extends BaseActivity<LaunchPresenter> implements Lau
 
     @Override
     protected void initView() {
-        // Set window full screen : no status bar.
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // Request READ_PHONE_STATE permission
         initPermission();
+    }
+
+    @Override
+    protected void fetchData() {
+
     }
 
     private void initPermission() {
         if (!PermissionUtil.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)) {
-            // Don't has READ_PHONE_STATE permission, Request now!
             if (PermissionUtil.shouldRequestPermission(this, Manifest.permission.READ_PHONE_STATE)) {
-                // User did't refuse permission request, request now!
                 PermissionUtil.requestPermission(this, Manifest.permission.READ_PHONE_STATE);
             } else {
-                // User has already refuse permission request! can't request again!
                 gotoHomeActivity();
             }
         } else {
-            // Has READ_PHONE_STATE permission, start activity now.
             gotoHomeActivity();
         }
     }
@@ -74,13 +73,9 @@ public class LaunchActivity extends BaseActivity<LaunchPresenter> implements Lau
                 Log.w(TAG, "READ_PHONE_STATE permission has been refuse!");
             }
         }
-        // Request READ_PHONE_STATE permission complete, goto home activity now
         gotoHomeActivity();
     }
 
-    /**
-     * Goto HomeActivity with animation
-     */
     private void gotoHomeActivity() {
         new CountDownTimer(1000, 1000) {
             @Override
@@ -91,7 +86,6 @@ public class LaunchActivity extends BaseActivity<LaunchPresenter> implements Lau
             public void onFinish() {
                 ARouter.getInstance().build("/controller/home").navigation();
                 LaunchActivity.this.overridePendingTransition(R.anim.anim_alpha_enter, R.anim.anim_alpha_exit);
-                // Finish this activity
                 LaunchActivity.this.finish();
             }
         }.start();
@@ -103,7 +97,6 @@ public class LaunchActivity extends BaseActivity<LaunchPresenter> implements Lau
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                // Shield back key
                 return true;
         }
         return super.onKeyDown(keyCode, event);

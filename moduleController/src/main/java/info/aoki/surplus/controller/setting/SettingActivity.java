@@ -31,6 +31,11 @@ public final class SettingActivity extends BaseActivity {
     }
 
     @Override
+    protected void fetchData() {
+
+    }
+
+    @Override
     protected BasePresenter initPresenter() {
         return null;
     }
@@ -49,7 +54,6 @@ public final class SettingActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        // arg1: Home activity enter animation; arg2: Setting activity exit animation
         this.overridePendingTransition(R.anim.anim_translate_right_enter, R.anim.anim_translate_left_out);
     }
 }

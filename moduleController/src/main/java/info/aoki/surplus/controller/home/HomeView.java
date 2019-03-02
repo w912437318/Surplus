@@ -3,39 +3,14 @@ package info.aoki.surplus.controller.home;
 import info.aoki.surplus.resource.BaseView;
 
 public interface HomeView extends BaseView {
-    /**
-     * <p>It's my be <strong>""</strong>, please check it</p>
-     *
-     * @return User input money
-     */
-    public String getUserInputMoney();
 
-    /**
-     * <p>It's my be <strong>""</strong>, please check it</p>
-     *
-     * @return User input memo
-     */
-    public String getUserInputMemo();
+    String getUserInputMoney();
 
-    /**
-     * <p>Get user select record type</p>
-     * <p><strong>Type:</strong> {@link HomeActivity}</p>
-     *
-     * @return Type
-     */
-    public int getUserSelectType();
+    String getUserInputMemo();
 
-    /**
-     * Show consumed money
-     *
-     * @param consumedMoney {@link String}
-     */
-    public void setConsumedMoney(String consumedMoney);
+    int getUserSelectType();
 
-    /**
-     * Show current date
-     *
-     * @param currentDate {@link String}
-     */
-    public void setCurrentDate(String currentDate);
+    void setConsumedMoney(String consumedMoney);
+
+    void setCurrentDate(String currentDate);
 }

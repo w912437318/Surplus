@@ -11,18 +11,7 @@ import rx.Observer;
  * @version 1.0
  */
 public interface IHomeModel {
-    /**
-     * <p>Save user input record</p>
-     *
-     * @param recordBean {@link RecordBean}
-     */
     public void insertRecord(RecordBean recordBean, Observer<Boolean> callBack);
 
-    /**
-     * Get Month Consumed
-     * <p>Query all month cost,calc consumed</p>
-     *
-     * @param callBack {@link Observer}
-     */
     public void getCurrentMonthConsumed(Observer<Float> callBack);
 }

@@ -39,146 +39,106 @@ public class HomeActivity
         extends BaseActivity<HomePresenter>
         implements HomeView, TextWatcher, ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
 
-    // Widgets
     private ImageView mAddImageView, mSettingImageView;
     private TextView mMoneyTextView, mDateTextView;
     private TextInputLayout mMoneyTextInputLayout, mMemoTextInputLayout;
     private AppCompatSpinner mTypeAppCompatSpinner;
-    /**
-     * <h3>Nav layout</h3>
-     * <p>change current display fragment, and it can show user witch fragment is showing</p>
-     */
     private TabLayout mTabLayout;
-    /**
-     * <h3>Content Fragment ViewPager</h3>
-     */
     private ViewPager mViewPager;
-
-    /**
-     * <h3>Customer Dialog</h3>
-     * <p>User input record info in this dialog</p>
-     * <code>TextInputLayout</code>: {@link HomeActivity#mMoneyTextInputLayout} - Input cost money
-     * <code>TextInputLayout</code>: {@link HomeActivity#mMemoTextInputLayout} - Input record memo
-     * <code>AppCompatSpinner</code>: {@link HomeActivity#mTypeAppCompatSpinner} - Select cost type
-     */
     private Dialog mDialog;
-    private boolean mExistFlag; // Exit flag: double click back key to exit
-    private View mDialogView; // Dialog view
-    private Animation mScaleAnimation; // Image view click animation
-    private ArrayList<Fragment> mFragmentList; // Content fragments
-    private TimeChangeReceiver mTimeChangeReceiver; // Time change broadcastReceiver
+    private boolean mExistFlag;
+    private View mDialogView;
+    private Animation mScaleAnimation;
+    private ArrayList<Fragment> mFragmentList;
+    private TimeChangeReceiver mTimeChangeReceiver;
 
     @Override
     protected void initData() {
-        this.mExistFlag = true;
-
-        // Inflate dialog view.
-        this.mDialogView = View.inflate(this, R.layout.controller_home_dialog_add_record, null);
-
-        // Image click animation (scale).
-        this.mScaleAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_scale_touch);
-
-        // Prepare fragments
-        this.mFragmentList = new ArrayList<>();
-        this.mFragmentList.add(new YearlyFragment());
-        this.mFragmentList.add(new MonthlyFragment());
-        this.mFragmentList.add(new WeeklyFragment());
-        this.mFragmentList.add(new DailyFragment());
+        mExistFlag = true;
+        mDialogView = View.inflate(this, R.layout.controller_home_dialog_add_record, null);
+        mScaleAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_scale_touch);
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(new YearlyFragment());
+        mFragmentList.add(new MonthlyFragment());
+        mFragmentList.add(new WeeklyFragment());
+        mFragmentList.add(new DailyFragment());
     }
 
     @Override
     protected void bindWidget() {
-        // Widget in activity
-        this.mSettingImageView = findViewById(R.id.activity_home_iv_setting);
-        this.mAddImageView = findViewById(R.id.activity_home_iv_add);
-        this.mTabLayout = findViewById(R.id.activity_home_tl_nav);
-        this.mViewPager = findViewById(R.id.activity_home_vp_content_container);
-        this.mMoneyTextView = findViewById(R.id.activity_home_tv_money);
-        this.mDateTextView = findViewById(R.id.activity_home_tv_date);
+        mSettingImageView = findViewById(R.id.activity_home_iv_setting);
+        mAddImageView = findViewById(R.id.activity_home_iv_add);
+        mTabLayout = findViewById(R.id.activity_home_tl_nav);
+        mViewPager = findViewById(R.id.activity_home_vp_content_container);
+        mMoneyTextView = findViewById(R.id.activity_home_tv_money);
+        mDateTextView = findViewById(R.id.activity_home_tv_date);
 
-        // Widget in dialog
-        this.mTypeAppCompatSpinner = mDialogView.findViewById(R.id.dialog_add_sp_type);
-        this.mMemoTextInputLayout = mDialogView.findViewById(R.id.dialog_add_edt_memo);
-        this.mMoneyTextInputLayout = mDialogView.findViewById(R.id.dialog_add_edt_money);
+        mTypeAppCompatSpinner = mDialogView.findViewById(R.id.dialog_add_sp_type);
+        mMemoTextInputLayout = mDialogView.findViewById(R.id.dialog_add_edt_memo);
+        mMoneyTextInputLayout = mDialogView.findViewById(R.id.dialog_add_edt_money);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void initView() {
         initDialog();
         initTab();
         initFragmentContainer();
 
-        // Set listeners
-        this.mSettingImageView.setOnClickListener(v -> {
-            // Goto setting activity
+        mSettingImageView.setOnClickListener(v -> {
             mSettingImageView.startAnimation(mScaleAnimation);
             this.gotoSettingActivity();
         });
-        this.mAddImageView.setOnClickListener(v -> {
-            // Open add record dialog
+        mAddImageView.setOnClickListener(v -> {
             mAddImageView.startAnimation(mScaleAnimation);
             this.openAddRecordDialog();
         });
-        this.mDialogView.findViewById(R.id.dialog_add_btn_note).setOnClickListener(v -> {
-            // Insert record to databases
+        mDialogView.findViewById(R.id.dialog_add_btn_note).setOnClickListener(v -> {
             this.addRecord();
         });
-        this.mTabLayout.setOnTabSelectedListener(this);
-        this.mViewPager.setOnPageChangeListener(this);
+        mTabLayout.setOnTabSelectedListener(this);
+        mViewPager.setOnPageChangeListener(this);
 
-        // Edit text input listener
         Objects.requireNonNull(mMoneyTextInputLayout.getEditText()).addTextChangedListener(this);
 
-        // Set data on view
         mPresenter.setCurrentTime();
         mPresenter.setConsumedMoney();
 
         setBroadcast();
     }
 
-    /**
-     * Start receive time changed broadcast
-     */
+    @Override
+    protected void fetchData() {
+
+    }
+
     private void setBroadcast() {
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_TIME_TICK); // Minute passed
-        intentFilter.addAction(Intent.ACTION_TIME_CHANGED); // System time be modify
+        intentFilter.addAction(Intent.ACTION_TIME_TICK);
+        intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
         mTimeChangeReceiver = new TimeChangeReceiver();
         registerReceiver(mTimeChangeReceiver, intentFilter);
     }
 
-    /**
-     * Crate Customer Dialog
-     */
     private void initDialog() {
-        this.mDialog = new Dialog(this, 0);
-        // Set dialog animation
+        mDialog = new Dialog(this, 0);
         Objects.requireNonNull(mDialog.getWindow()).setWindowAnimations(R.style.DialogWindowAnimation);
-        // Set dialog window background
-        this.mDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog_add);
-        // Ser dialog view
-        this.mDialog.setContentView(mDialogView);
+        mDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog_add);
+        mDialog.setContentView(mDialogView);
     }
 
     /**
      * Init nav tab
      */
     private void initTab() {
-        // Create tab item
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.yearly));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.monthly));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.weekly));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.daily));
-        // Set tab item text color, normal color and active color
+
         mTabLayout.setTabTextColors(R.color.white, R.color.white);
-        // Set tab active color
         mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
     }
 
-    /**
-     * Create
-     */
     private void initFragmentContainer() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setOffscreenPageLimit(4);
@@ -187,45 +147,26 @@ public class HomeActivity
         mViewPager.setCurrentItem(3);
     }
 
-    /*
-     * Start activity with animation
-     */
-
     private void gotoSettingActivity() {
         ARouter.getInstance().build("/controller/setting").navigation();
-        // Set animation
         this.overridePendingTransition(R.anim.anim_translate_left_enter, R.anim.anim_translate_right_out);
     }
-    /*
-     * Open dialog: add record
-     */
 
     private void openAddRecordDialog() {
         this.mDialog.show();
     }
 
-    /**
-     * Call presenter, save user input data
-     */
     private void addRecord() {
         if (this.getUserInputMoney().equals("")) {
-            // User didn't input money, set error tip
             mMoneyTextInputLayout.setErrorEnabled(true);
             mMoneyTextInputLayout.setError(getResources().getString(R.string.please_input_money));
             return;
         }
-        // Save user input record
         mPresenter.addRecord();
-        // Clear edit text, dismiss dialog
         this.resetDialog();
-        // Update consume money
         mPresenter.setConsumedMoney();
     }
 
-    /**
-     * Dismiss dialog, clear edit text
-     * <p>If add cost record success, Reset </p>
-     */
     private void resetDialog() {
         if (mDialog.isShowing()) {
             mDialog.dismiss();
@@ -246,7 +187,6 @@ public class HomeActivity
 
     @Override
     public void onBackPressed() {
-        // Double click to exit
         if (this.mExistFlag) {
             this.mExistFlag = false;
             ToastUtil.showToast(R.string.click_again_to_exit);
@@ -270,7 +210,6 @@ public class HomeActivity
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        // If user input number is illegal, stop input
         if (charSequence.toString().contains(".")) {
             if (charSequence.length() - 1 - charSequence.toString().indexOf(".") > 2) {
                 charSequence = charSequence.toString().subSequence(0,
@@ -297,7 +236,6 @@ public class HomeActivity
 
     @Override
     public void afterTextChanged(Editable editable) {
-        // Close error tips when user modified input text
         mMoneyTextInputLayout.setErrorEnabled(false);
     }
 
@@ -368,20 +306,7 @@ public class HomeActivity
         unregisterReceiver(mTimeChangeReceiver);
     }
 
-    /**
-     * <p>Record type</p>
-     */
-    public enum RecordType {
-        RECORD_TYPE_FOOD,
-        RECORD_TYPE_TRAFFIC,
-        RECORD_TYPE_SHOPPING,
-        RECORD_TYPE_OTHER
-    }
 
-    /**
-     * ViewPager Adapter
-     * <p>Content fragments adapter</p>
-     */
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         private ViewPagerAdapter(FragmentManager fm) {
@@ -399,10 +324,6 @@ public class HomeActivity
         }
     }
 
-    /**
-     * BroadcastReceiver of time changed.
-     * <p>When user modify system time and minute passed, it will transfer {@link HomePresenter#setCurrentTime()}</p>
-     */
     private class TimeChangeReceiver extends BroadcastReceiver {
 
         @Override
@@ -411,11 +332,9 @@ public class HomeActivity
                 default:
                     break;
                 case Intent.ACTION_TIME_CHANGED:
-                    // User modify system time setting
                     mPresenter.setCurrentTime();
                     break;
                 case Intent.ACTION_TIME_TICK:
-                    // Minute passed
                     mPresenter.setCurrentTime();
                     break;
             }

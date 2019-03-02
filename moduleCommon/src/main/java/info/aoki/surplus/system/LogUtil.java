@@ -11,13 +11,6 @@ import android.util.Log;
  * @version 1.0
  */
 public class LogUtil {
-    /**
-     * Debug switch
-     * <p>
-     *     if true : print log what level higher than debug<br/>
-     *     if false : don't print log, else info level
-     * </p>
-     */
     private final static boolean DEBUG_MODE = true;
 
     public static void i(String TAG, String message) {
