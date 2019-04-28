@@ -21,4 +21,6 @@
     <string name="traffic">Traffic</string>
     <string name="shopping">Shopping</string>
     <string name="other">Others</string>
+
+    <string name="money_flag">$</string>
 </resources>

@@ -1,6 +1,7 @@
 package info.aoki.surplus.system;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,9 +23,9 @@ import android.support.v4.content.ContextCompat;
 public class PermissionUtil {
     public final static int REQUEST_CODE_REQUEST_PERMISSION = 200;
 
-    public static boolean checkSelfPermission(String permission) {
+    public static boolean checkSelfPermission(String permission, Context context) {
         int hasPermission = ContextCompat.checkSelfPermission(
-                ApplicationConfig.getConfig().getContext(),
+                context,
                 permission);
         return hasPermission == PackageManager.PERMISSION_GRANTED;
     }

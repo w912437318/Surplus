@@ -14,8 +14,8 @@ public abstract class BasePresenter<T extends BaseView, Y> {
 
     public BasePresenter(Context mContext, T mView) {
         this.mContext = mContext;
-        this.mView = mView;
         this.mModel = initModel();
+        this.mView = mView;
     }
 
     protected abstract Y initModel();

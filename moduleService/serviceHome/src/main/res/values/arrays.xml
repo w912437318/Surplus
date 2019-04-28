@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="consumed_record_type">
+        <item>@string/diet</item>
+        <item>@string/traffic</item>
+        <item>@string/shopping</item>
+        <item>@string/other</item>
+    </string-array>
+</resources>

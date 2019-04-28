@@ -1,16 +1,18 @@
 apply plugin: 'com.android.application'
 
+def globalConfig = rootProject.ext
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion globalConfig.android['compileSdkVersion']
+
     defaultConfig {
-        applicationId "info.aoki.surplus"
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        applicationId globalConfig.android['applicationId']
+        minSdkVersion globalConfig.android['minSdkVersion']
+        targetSdkVersion globalConfig.android['targetSdkVersion']
+        versionCode globalConfig.android['versionCode']
+        versionName globalConfig.android['versionName']
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        // Alibaba ARouter compile options
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
@@ -23,67 +25,47 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    // Java Compiler Version 1.8
+
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = globalConfig.android['sourceCompatibility']
+        targetCompatibility = globalConfig.android['targetCompatibility']
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    /*
-     * Custom dependencies
-     */
+    implementation globalConfig.dependencies['AndroidSupportV7']
+    implementation globalConfig.dependencies['AndroidSupportV4']
+    implementation globalConfig.dependencies['AndroidSupportDesign']
+    implementation globalConfig.dependencies['AndroidSupportAnnotation']
+    implementation globalConfig.dependencies['OkHttp']
+    implementation globalConfig.dependencies['Retrofit']
+    implementation globalConfig.dependencies['RetrofitGsonConverter']
+    implementation globalConfig.dependencies['RxJava']
+    implementation globalConfig.dependencies['RxAndroid']
+    implementation globalConfig.dependencies['RetrofitRxJavaAdapter']
+    implementation globalConfig.dependencies['MPAndroidChart']
+    implementation globalConfig.dependencies['Gson']
+    implementation globalConfig.dependencies['GreenDao']
+    implementation globalConfig.dependencies['SQLCipher']
+    implementation globalConfig.dependencies['JetBrainsAnnotation']
+    implementation globalConfig.dependencies['Eventbus']
+    implementation globalConfig.dependencies['ARouterAPI']
+    annotationProcessor globalConfig.dependencies['ARouterCompiler']
 
-    // Support -- design, v4, recycler view
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-
-    /*
-     * OkHttp + Retrofit2 + RxJava2
-     */
-    // OkHttp
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-    // Retrofit2
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-    // RxJava + RxJava android support
-    implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    implementation 'io.reactivex:rxjava:1.2.1'
-
-    // MPAndroidChart3.0
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-
-    // Status bar util
-    implementation 'com.jaeger.statusbaruitl:library:1.5.0'
-
-    // Json
-    implementation 'com.google.code.gson:gson:2.8.5'
-
-    /*
-     * GreenDao
-     */
-    implementation 'org.greenrobot:greendao:3.2.2'
-    // GreenDao encryption dependency
-    implementation 'net.zetetic:android-database-sqlcipher:3.5.2'
-
-    // Android App Update
-    implementation 'com.azhon:appupdate:2.0.0'
-
-    // ARouter - alibaba
-    implementation 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-
-    // Import project modules
-    implementation project(':moduleController')
+    //implementation project(':moduleController')
     implementation project(':moduleResource')
+    implementation project(':moduleCommon')
+    implementation project(':moduleService:serviceHome')
+    implementation project(':moduleService:serviceDaily')
+    implementation project(':moduleService:serviceWeekly')
+    implementation project(':moduleService:serviceMonthly')
+    implementation project(':moduleService:serviceYearly')
+    implementation project(':moduleService:serviceGuide')
+    implementation project(':moduleService:serviceSetting')
 }

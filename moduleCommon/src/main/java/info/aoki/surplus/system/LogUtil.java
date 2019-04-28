@@ -11,7 +11,7 @@ import android.util.Log;
  * @version 1.0
  */
 public class LogUtil {
-    private final static boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = true;
 
     public static void i(String TAG, String message) {
         Log.i(TAG, message);

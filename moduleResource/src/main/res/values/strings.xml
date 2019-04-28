@@ -15,9 +15,11 @@
     <string name="monthly">月</string>
     <string name="weekly">周</string>
     <string name="daily">日</string>
-    <!-- Cost Type -->
+
     <string name="diet">饮食</string>
     <string name="traffic">交通</string>
     <string name="shopping">购物</string>
     <string name="other">杂项</string>
+
+    <string name="money_flag">¥</string>
 </resources>

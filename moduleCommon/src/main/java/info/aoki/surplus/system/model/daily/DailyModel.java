@@ -8,10 +8,10 @@ import java.util.List;
 import info.aoki.surplus.system.model.BaseModel;
 import info.aoki.surplus.system.model.RecordBeanDao;
 import info.aoki.surplus.system.pojo.RecordBean;
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * <h3>DailyModel</h3>
@@ -74,7 +74,6 @@ public class DailyModel extends BaseModel implements IDailyModel {
                 subscribe(callback);
     }
 
-    @Override
     public void queryConsumedRecordAfterTimeLimit(long timeLimit, Observer<List<RecordBean>> callback) {
         RecordBeanDao recordBeanDao = mDaoSession.getRecordBeanDao();
         Observable.just(timeLimit).

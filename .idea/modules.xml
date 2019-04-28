@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Surplus.iml" filepath="$PROJECT_DIR$/Surplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleCommon/moduleCommon.iml" filepath="$PROJECT_DIR$/moduleCommon/moduleCommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleResource/moduleResource.iml" filepath="$PROJECT_DIR$/moduleResource/moduleResource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/moduleService.iml" filepath="$PROJECT_DIR$/moduleService/moduleService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceDaily/serviceDaily.iml" filepath="$PROJECT_DIR$/moduleService/serviceDaily/serviceDaily.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceGuide/serviceGuide.iml" filepath="$PROJECT_DIR$/moduleService/serviceGuide/serviceGuide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceHome/serviceHome.iml" filepath="$PROJECT_DIR$/moduleService/serviceHome/serviceHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceMonthly/serviceMonthly.iml" filepath="$PROJECT_DIR$/moduleService/serviceMonthly/serviceMonthly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceSetting/serviceSetting.iml" filepath="$PROJECT_DIR$/moduleService/serviceSetting/serviceSetting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceWeekly/serviceWeekly.iml" filepath="$PROJECT_DIR$/moduleService/serviceWeekly/serviceWeekly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleService/serviceYearly/serviceYearly.iml" filepath="$PROJECT_DIR$/moduleService/serviceYearly/serviceYearly.iml" />
+    </modules>
+  </component>
+</project>

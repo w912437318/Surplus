@@ -1,0 +1,90 @@
+ext {
+    javaVersion = 8
+
+    android = [
+            // 项目编译版本信息
+            compileSdkVersion  : 28,
+            targetSdkVersion   : 28,
+            minSdkVersion      : 19,
+            buildToolVersion   : '28.0.0',
+            versionCode        : 1,
+            versionName        : '1.0.0',
+
+            // Java 编译版本
+            sourceCompatibility: this.&getJavaVersion(),
+            targetCompatibility: this.&getJavaVersion(),
+            applicationId      : 'info.aoki.surplus'
+    ]
+
+    dependency_version = [
+            MPAndroidChartVersion               : "v3.0.3",
+            RxJavaVersion                       : "2.2.7",
+            RxAndroidVersion                    : "2.1.1",
+            OkIOVersion                         : "1.1.3",
+            OkHttpVersion                       : "3.12.0",
+            RetrofitVersion                     : "2.3.0",
+            GsonVersion                         : "2.8.5",
+            GreenDaoVersion                     : "3.2.2",
+            EventbusVersion                     : "3.1.1",
+            LifecycleVersion                    : "1.1.1",
+            JavaAnnotationVersion               : "15.0",
+            LoggerVersion                       : "2.2.0",
+            GildeVersion                        : "4.9.0",
+            ButterKinfeVersion                  : "10.1.0",
+            ShiroVersion                        : "1.4.0",
+            LuBanVersion                        : "1.1.3",
+            SpinkVersion                        : "1.2.0",
+            LifeCycleVersion                    : "1.1.1",
+            ARouterAPIVersion                   : "1.4.1",
+            ARouterCompilerVersion              : "1.2.2",
+            BaseRecyclerViewAdapterHelperVersion: "2.9.30",
+            JetBrainsAnnotationVersion          : "15.0",
+            SQLCipherVersion                    : "3.5.2"
+    ]
+
+    dependencies = [
+            AndroidSupportV7             : "com.android.support:appcompat-v7:${android['buildToolVersion']}",
+            AndroidSupportDesign         : "com.android.support:design:${android['buildToolVersion']}",
+            AndaroidSupportMedia         : "com.android.support:support-media-compat:${android['buildToolVersion']}",
+            AndroidSupportV4             : "com.android.support:support-v4:${android['buildToolVersion']}",
+            AndroidSupportAnnotation     : "com.android.support:support-annotations:${android['buildToolVersion']}",
+            MPAndroidChart               : "com.github.PhilJay:MPAndroidChart:${dependency_version['MPAndroidChartVersion']}",
+            RxJava                       : "io.reactivex.rxjava2:rxjava:${dependency_version['RxJavaVersion']}",
+            RxAndroid                    : "io.reactivex.rxjava2:rxandroid:${dependency_version['RxAndroidVersion']}",
+            OkIO                         : "com.squareup.okio:okio:${dependency_version['OkIOVersion']}",
+            OkHttp                       : "com.squareup.okhttp3:okhttp:${dependency_version['OkHttpVersion']}",
+            OkHttpLogInterceptor         : "com.squareup.okhttp3:logging-interceptor:${dependency_version['OkHttpVersion']}",
+            Retrofit                     : "com.squareup.retrofit2:retrofit:${dependency_version['RetrofitVersion']}",
+            RetrofitGsonConverter        : "com.squareup.retrofit2:converter-gson:${dependency_version['RetrofitVersion']}",
+            RetrofitRxJavaAdapter        : "com.squareup.retrofit2:adapter-rxjava2:${dependency_version['RetrofitVersion']}",
+            Gson                         : "com.google.code.gson:gson:${dependency_version['GsonVersion']}",
+            GreenDao                     : "org.greenrobot:greendao:${dependency_version['GreenDaoVersion']}",
+            Eventbus                     : "org.greenrobot:eventbus:${dependency_version['EventbusVersion']}",
+            JavaAnnotation               : "org.jetbrains:annotations-java5:${dependency_version['JavaAnnotationVersion']}",
+            Gilde                        : "com.github.bumptech.glide:glide:${dependency_version['GildeVersion']}",
+            GildeCompiler                : "com.github.bumptech.glide:compiler:${dependency_version['GildeVersion']}",
+            ButterKinfe                  : "com.jakewharton:butterknife:${dependency_version['ButterKinfeVersion']}",
+            ButterKinfeCompiler          : "com.jakewharton:butterknife-compiler:${dependency_version['ButterKinfeVersion']}",
+            Shiro                        : "org.apache.shiro:shiro-core:${dependency_version['ShiroVersion']}",
+            LuBan                        : "top.zibin:Luban:${dependency_version['LuBanVersion']}",
+            Spink                        : "com.github.ybq:Android-SpinKit:${dependency_version['SpinkVersion']}",
+            LifeCycle                    : "android.arch.lifecycle:extensions:${dependency_version['LifeCycleVersion']}",
+            LifeCycleCompiler            : "android.arch.lifecycle:compiler:${dependency_version['LifeCycleVersion']}",
+            ARouterAPI                   : "com.alibaba:arouter-api:${dependency_version['ARouterAPIVersion']}",
+            ARouterCompiler              : "com.alibaba:arouter-compiler:${dependency_version['ARouterCompilerVersion']}",
+            BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${dependency_version['BaseRecyclerViewAdapterHelperVersion']}",
+            LoggerUtil                   : "com.orhanobut:logger:${dependency_version['LoggerVersion']}",
+            JetBrainsAnnotation          : "org.jetbrains:annotations:${dependency_version['JetBrainsAnnotationVersion']}",
+            SQLCipher                    : "net.zetetic:android-database-sqlcipher:${dependency_version['SQLCipherVersion']}",
+    ]
+}
+
+def getJavaVersion() {
+    switch (ext.javaVersion) {
+        case "7": return JavaVersion.VERSION_1_7
+        case "8": return JavaVersion.VERSION_1_8
+        case "9": return JavaVersion.VERSION_1_9
+        case "10": return JavaVersion.VERSION_1_10
+        default: return JavaVersion.VERSION_1_8
+    }
+}

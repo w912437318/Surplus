@@ -2,7 +2,7 @@
     package="info.aoki.surplus">
 
     <application
-        android:name=".controller.ApplicationContext"
+        android:name=".ApplicationContext"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,8 @@
 
         <!-- Launch activity -->
         <activity
-            android:name=".controller.launch.LaunchActivity"
+            android:name="edu.wayne.service.guide.LaunchActivity"
+            android:theme="@style/FullScreenActivityTheme"
             android:screenOrientation="behind">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.wayne.service.setting">
+
+    <application>
+        <activity
+            android:name=".SettingActivity"
+            android:screenOrientation="behind" />
+    </application>
+</manifest>

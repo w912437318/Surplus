@@ -1,1 +1,5 @@
-include ':app', ':moduleController', ':moduleCommon', ':moduleResource'
+include ':app',
+        ':moduleService:serviceDaily', ':moduleService:serviceWeekly', ':moduleService:serviceMonthly',
+        ':moduleService:serviceYearly', ':moduleService:serviceGuide', ':moduleService:serviceHome', ':moduleService:serviceSetting',
+        ':moduleCommon',
+        ':moduleResource'

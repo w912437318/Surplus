@@ -1,17 +1,24 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.greenrobot.greendao'
 
+def globalConfig = rootProject.ext
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion globalConfig.android['compileSdkVersion']
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion globalConfig.android['minSdkVersion']
+        targetSdkVersion globalConfig.android['targetSdkVersion']
+        versionCode globalConfig.android['versionCode']
+        versionName globalConfig.android['versionName']
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -20,9 +27,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = globalConfig.android['sourceCompatibility']
+        targetCompatibility = globalConfig.android['targetCompatibility']
     }
 
     greendao {
@@ -32,30 +40,23 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    // 测试依赖
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    /*
-     * OkHttp + Retrofit2 + RxJava2
-     */
-    // OkHttp
-    compileOnly 'com.squareup.okhttp3:okhttp:3.12.0'
-    // Retrofit2
-    compileOnly 'com.squareup.retrofit2:retrofit:2.1.0'
-    compileOnly 'com.squareup.retrofit2:converter-gson:2.1.0'
-    // RxJava + RxJava android support
-    compileOnly 'io.reactivex:rxandroid:1.2.1'
-    compileOnly 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compileOnly 'io.reactivex:rxjava:1.2.1'
-
-    /*
-     * GreenDao
-     */
-    compileOnly 'org.greenrobot:greendao:3.2.2'
-    // GreenDao encryption dependency
-    compileOnly 'net.zetetic:android-database-sqlcipher:3.5.2'
+    implementation globalConfig.dependencies['AndroidSupportV7']
+    compileOnly globalConfig.dependencies['AndroidSupportV4']
+    compileOnly globalConfig.dependencies['OkHttp']
+    compileOnly globalConfig.dependencies['RetrofitGsonConverter']
+    compileOnly globalConfig.dependencies['RxJava']
+    compileOnly globalConfig.dependencies['RxAndroid']
+    compileOnly globalConfig.dependencies['RetrofitRxJavaAdapter']
+    compileOnly globalConfig.dependencies['GreenDao']
+    compileOnly globalConfig.dependencies['SQLCipher']
+    compileOnly globalConfig.dependencies['JetBrainsAnnotation']
+    compileOnly globalConfig.dependencies['ARouterAPI']
+    annotationProcessor globalConfig.dependencies['ARouterCompiler']
 
     implementation project(':moduleResource')
 }

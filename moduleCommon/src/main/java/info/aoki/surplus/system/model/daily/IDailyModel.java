@@ -3,7 +3,7 @@ package info.aoki.surplus.system.model.daily;
 import java.util.List;
 
 import info.aoki.surplus.system.pojo.RecordBean;
-import rx.Observer;
+import io.reactivex.Observer;
 
 /**
  * <h3>IDailyModel</h3>
@@ -17,6 +17,4 @@ public interface IDailyModel {
     public void queryTodayConsumed(Observer<Float> callback);
 
     public void queryTodayAllConsumedRecord(Observer<List<RecordBean>> callback);
-
-    public void queryConsumedRecordAfterTimeLimit(long timeLimit, Observer<List<RecordBean>> callback);
 }

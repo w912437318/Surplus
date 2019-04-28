@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="dialog_add_record_spinner_items">
-        <item>@string/diet</item>
-        <item>@string/traffic</item>
-        <item>@string/shopping</item>
-        <item>@string/other</item>
-    </string-array>
-</resources>
