@@ -3,10 +3,14 @@ package edu.wayne.service.home;
 import android.content.Context;
 import android.text.TextUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import info.aoki.surplus.resource.BasePresenter;
+import info.aoki.surplus.resource.EventBusCode;
+import info.aoki.surplus.resource.EventBusMessage;
 import info.aoki.surplus.system.base.SimpleObserver;
 import info.aoki.surplus.system.model.home.HomeModel;
 import info.aoki.surplus.system.model.home.IHomeModel;
@@ -39,6 +43,8 @@ public class HomePresenter extends BasePresenter<HomeView, IHomeModel> {
                         mView.showHint(R.string.save_success);
                         mView.resetInputInfo();
                         setConsumedMoney();
+                        // 推送事件：用户插入消费记录
+                        EventBus.getDefault().post(new EventBusMessage<>(null, EventBusCode.ON_ADD_CONSUMED_RECORD));
                     }
                 }
             });
@@ -61,7 +67,7 @@ public class HomePresenter extends BasePresenter<HomeView, IHomeModel> {
         mModel.getCurrentMonthConsumed(new SimpleObserver<Float>() {
             @Override
             public void onNext(Float aFloat) {
-                mView.setConsumedMoney(mContext.getString(R.string.money_flag) + "\t" + aFloat);
+                mView.setConsumedMoney(mContext.getString(R.string.money_flag) + aFloat);
             }
         });
     }

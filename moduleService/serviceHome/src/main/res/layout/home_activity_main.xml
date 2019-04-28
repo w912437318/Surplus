@@ -4,8 +4,8 @@
     android:id="@+id/activity_home_dl_content_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/default_activity_bg_color"
     android:fitsSystemWindows="true"
-    android:background="@drawable/controller_home_activity_bg_color"
     android:orientation="vertical">
 
     <!-- Header -->
@@ -17,14 +17,14 @@
         android:paddingEnd="@dimen/screen_padding_right">
 
         <!-- Setting button -->
-        <ImageView
+        <ImageButton
             android:id="@+id/activity_home_iv_setting"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/setting"
             android:padding="12dp"
-            android:src="@drawable/setting" />
+            android:src="@drawable/home_ic_setting" />
 
         <LinearLayout
             android:layout_width="200dp"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="@dimen/content_big_title_size"
-                android:textStyle="italic|bold" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/activity_home_tv_date"
@@ -47,19 +47,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
                 android:textColor="@color/white"
-                android:textSize="@dimen/content_text_size" />
+                android:textSize="@dimen/content_text_size"
+                android:textStyle="italic" />
         </LinearLayout>
 
         <!-- Add record button -->
-        <ImageView
+        <ImageButton
             android:id="@+id/activity_home_iv_add"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/add_record"
             android:padding="8dp"
-            android:src="@drawable/add" />
+            android:src="@drawable/home_ic_add" />
     </RelativeLayout>
 
     <!--Nav-->

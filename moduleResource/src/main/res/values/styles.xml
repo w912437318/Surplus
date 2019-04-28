@@ -8,12 +8,6 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <!-- Dialog open&close animation theme -->
-    <style name="DialogWindowAnimation">
-        <item name="android:windowEnterAnimation">@anim/anim_translate_right_enter</item>
-        <item name="android:windowExitAnimation">@anim/anim_translate_right_out</item>
-    </style>
-
     <style name="FullScreenActivityTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>

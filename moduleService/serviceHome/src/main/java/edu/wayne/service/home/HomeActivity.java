@@ -105,7 +105,7 @@ public class HomeActivity
     private void initDialog() {
         mInputDialog = new Dialog(this, 0);
         Objects.requireNonNull(mInputDialog.getWindow()).setWindowAnimations(R.style.DialogWindowAnimation);
-        mInputDialog.getWindow().setBackgroundDrawableResource(R.drawable.controller_home_dialog_add_bg);
+        mInputDialog.getWindow().setBackgroundDrawableResource(R.drawable.home_dialog_add_bg);
         mInputDialog.setContentView(mDialogView);
     }
 

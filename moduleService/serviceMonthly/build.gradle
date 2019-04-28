@@ -48,6 +48,7 @@ dependencies {
     compileOnly globalConfig.dependencies['RxAndroid']
     compileOnly globalConfig.dependencies['RetrofitRxJavaAdapter']
     compileOnly globalConfig.dependencies['MPAndroidChart']
+    compileOnly globalConfig.dependencies['Eventbus']
     compileOnly globalConfig.dependencies['ARouterAPI']
     annotationProcessor globalConfig.dependencies['ARouterCompiler']
 

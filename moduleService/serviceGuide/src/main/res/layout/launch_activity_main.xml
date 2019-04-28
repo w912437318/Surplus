@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/controller_home_activity_bg_color"
+    android:background="@drawable/default_activity_bg_color"
     android:fitsSystemWindows="true">
 
     <TextView

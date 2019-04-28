@@ -10,7 +10,7 @@
     <string name="save_success">保存成功</string>
     <string name="save_failed">保存失败</string>
     <string name="you_have_no_any_records">您暂时没有任何消费记录</string>
-    <!-- Tab item names -->
+
     <string name="yearly">年</string>
     <string name="monthly">月</string>
     <string name="weekly">周</string>
